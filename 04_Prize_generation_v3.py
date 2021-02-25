@@ -19,10 +19,8 @@ for item in range(0, NUM_TRIALS):
         # prize += " "
         if 0 < prize_num <= 5:
             round_winnings += 5
-
         elif 5 < prize_num <= 25:
             round_winnings += 2
-
         elif 25 < prize_num <= 65:
             round_winnings += 1
         '''else:
