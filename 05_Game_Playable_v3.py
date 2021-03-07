@@ -5,12 +5,14 @@ import random
 
 class Start:
     def __init__(self, parent):
-        # GUI to get starting balance and stakes
-        self.start_frame = Frame(padx=10, pady=10)
+
+        # Main Panel GUI
+        self.start_frame = Frame(parent)
         self.start_frame.grid()
 
-        self.push_me_button = Button(text="Push Me", command=self.to_game)
-        self.push_me_button.grid(row=0, pady=10)
+        self.push_button = Button(self.start_frame, text="Push Now",
+                                  command=self.to_game)
+        self.push_button.grid(self)
 
     def to_game(self):
         # retrieve starting balance
@@ -62,21 +64,28 @@ class Game:
 
         # Boxes go here (row 2)
         box_text = "Arial 16 bold"
-        box_back = "#b9ea96"  # light green
-        box_width = 5
+        
         self.box_frame = Frame(self.game_frame)
         self.box_frame.grid(row=2, pady=10)
+        
+        photo = PhotoImage(file="question.gif")
 
         self.prize1_label = Label(self.box_frame, text="?\n", font=box_text,
-                                  bg=box_back, width=box_width, padx=10, pady=10)
+                                  image=photo,
+                                  padx=10, pady=10)
+        self.prize1_label.photo = photo
         self.prize1_label.grid(row=0, column=0)
 
         self.prize2_label = Label(self.box_frame, text="?\n", font=box_text,
-                                  bg=box_back, width=box_width, padx=10, pady=10)
+                                  image=photo,
+                                  padx=10, pady=10)
+        self.prize2_label.photo = photo
         self.prize2_label.grid(row=0, column=1, padx=10)
 
         self.prize3_label = Label(self.box_frame, text="?\n", font=box_text,
-                                  bg=box_back, width=box_width, padx=10, pady=10)
+                                  image=photo,
+                                  padx=10, pady=10)
+        self.prize3_label.photo = photo
         self.prize3_label.grid(row=0, column=2)
 
         # Play button goes here (row 3)
