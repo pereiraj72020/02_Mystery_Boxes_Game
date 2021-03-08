@@ -66,27 +66,23 @@ class Game:
         self.instructions_label.grid(row=1)
 
         # Boxes go here (row 2)
-        box_text = "Arial 16 bold"
         
         self.box_frame = Frame(self.game_frame)
         self.box_frame.grid(row=2, pady=10)
         
         photo = PhotoImage(file="question.gif")
 
-        self.prize1_label = Label(self.box_frame, text="?\n", font=box_text,
-                                  image=photo,
+        self.prize1_label = Label(self.box_frame, image=photo,
                                   padx=10, pady=10)
         self.prize1_label.photo = photo
         self.prize1_label.grid(row=0, column=0)
 
-        self.prize2_label = Label(self.box_frame, text="?\n", font=box_text,
-                                  image=photo,
+        self.prize2_label = Label(self.box_frame, image=photo,
                                   padx=10, pady=10)
         self.prize2_label.photo = photo
         self.prize2_label.grid(row=0, column=1, padx=10)
 
-        self.prize3_label = Label(self.box_frame, text="?\n", font=box_text,
-                                  image=photo,
+        self.prize3_label = Label(self.box_frame, image=photo,
                                   padx=10, pady=10)
         self.prize3_label.photo = photo
         self.prize3_label.grid(row=0, column=2)
