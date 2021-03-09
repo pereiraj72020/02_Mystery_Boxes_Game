@@ -19,10 +19,8 @@ class Start:
         starting_balance = 50
         stakes = 2
 
-        Game(self, stakes, starting_balance)
-
-        # hide start up window
         self.start_frame.destroy()
+        Game(self, stakes, starting_balance)
 
 
 class Game:
@@ -135,7 +133,8 @@ class Game:
 
         round_winnings = 0
         prizes = []
-        backgrounds = []
+        stats_prizes = []
+
         for item in range(0, 3):
             prize_num = random.randint(1, 100)
 
@@ -184,6 +183,7 @@ class Game:
                                                           round_winnings,
                                                           current_balance)
 
+        # Add round results to statistics list
         round_summary = "{} | {} | {} - Cost: ${} | " \
                         "Payback: ${} | Current Balance: " \
                         "${}".format(stats_prizes[0], stats_prizes[1],
@@ -209,7 +209,6 @@ class Game:
 
     def to_quit(self):
         root.destroy()
-
 
 # main routine
 if __name__ == "__main__":
