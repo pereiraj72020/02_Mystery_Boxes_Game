@@ -5,7 +5,6 @@ import random
 
 class Start:
     def __init__(self, parent):
-
         # GUI to get starting balance and stakes
         self.start_frame = Frame(padx=10, pady=10)
         self.start_frame.grid()
@@ -40,7 +39,7 @@ class Game:
 
         # List for holding statistics
         self.round_stats_list = []
-        self.game_stats_list=[starting_balance, starting_balance]
+        self.game_stats_list = [starting_balance, starting_balance]
 
         # GUI Setup
         self.game_box = Toplevel()
@@ -218,14 +217,15 @@ class Game:
 
 class Help:
     def __init__(self, partner):
+        background = "#a9ef99"  # Pale green
 
-        # disable help button
+        # disable Help button
         partner.help_button.config(state=DISABLED)
 
-        # Sets up child window (ie: help box)
+        # Sets up child window (ie: Help box)
         self.help_box = Toplevel()
 
-        # If users press cross at top, closes help and 'releases' help button
+        # If users press cross at top, closes Help and 'releases' Help button
         self.help_box.protocol('WM_DELETE_WINDOW', partial(self.close_help, partner))
 
         # Set up GUI Frame
@@ -233,8 +233,8 @@ class Help:
         self.help_frame.grid()
 
         # Set up Help heading (row 0)
-        self.how_heading = Label(self.help_frame, text="Healp / Instructions",
-                                 font="arial 14 bold")
+        self.how_heading = Label(self.help_frame, text="Help / Instructions",
+                                 font="arial 14 bold", bg=background)
         self.how_heading.grid(row=0)
 
         help_text = "Choose an amount to play with and then choose the stakes. " \
@@ -265,7 +265,7 @@ class Help:
                                   font="arial 15 bold", )
 
         # Entry box, Button & Error Label (row 2)
-        self.entry_error_frame = Frame(self.start_frame, width=200)
+        self.entry_error_frame = Frame(self.help_frame, width=200)
         self.entry_error_frame.grid(row=2)
 
         self.start_amount_entry = Entry(self.entry_error_frame,
@@ -374,6 +374,11 @@ class Help:
 
         # hide start up window
         root.withdraw()
+
+    def close_help(self, partner):
+        # put Help button back to normal...
+        partner.help_button.config(state=NORMAL)
+        self.help_box.destroy()
 
 
 # main routine
