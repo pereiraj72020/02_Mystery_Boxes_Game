@@ -214,6 +214,7 @@ class Game:
     def to_quit(self):
         root.destroy()
 
+
 class Help:
     def __init__(self, partner):
         background = "#a9ef99"  # Pale green
@@ -228,12 +229,12 @@ class Help:
         self.help_box.protocol('WM_DELETE_WINDOW', partial(self.close_help, partner))
 
         # Set up GUI Frame
-        self.help_frame = Frame(self.help_box, width=300, bg=background)
+        self.help_frame = Frame(self.help_box, width=300)
         self.help_frame.grid()
 
         # Set up Help heading (row 0)
         self.how_heading = Label(self.help_frame, text="Help / Instructions",
-                                 font="arial 14 bold", bg=background)
+                                 font="arial 14 bold")
         self.how_heading.grid(row=0)
 
         help_text = "Choose an amount to play with and then choose the stakes. " \
@@ -256,14 +257,12 @@ class Help:
         # Help text (label, row 1)
         self.help_text = Label(self.help_frame,
                                text=help_text,
-                               justify=LEFT, width=40, bg=background, wrap=250)
+                               justify=LEFT, wrap=400, padx=10, pady=10)
         self.help_text.grid(row=1)
 
         # Dismiss button (row 2)
         self.dismiss_button = Button(self.help_frame, text="Dismiss",
-                                     width=10, bg="orange", font="arial 10 bold",
-                                     command=partial(self.close_help, partner))
-        self.dismiss_button.grid(row=2)
+                                     width=10, bg="#660000", fg="white", font="arial 15 bold", )
 
     def close_help(self, partner):
         # put Help button back to normal...
