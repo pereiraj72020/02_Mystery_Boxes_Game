@@ -337,7 +337,6 @@ class Game:
     def to_help(self):
         get_help = Help(self)
 
-
     def to_stats(self, game_history, game_stats):
         GameStats(self, game_history, game_stats)
 
