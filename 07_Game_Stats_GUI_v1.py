@@ -5,7 +5,6 @@ import random
 
 class Game:
     def __init__(self):
-
         # Formatting variables...
         self.game_stats_list = [50, 6]
 
@@ -79,7 +78,7 @@ class Game:
         self.stats_button = Button(self.game_frame,
                                    text="Game Stats",
                                    font="Arial 14", padx=10, pady=10,
-                                   command=lambda: self.to_stats(self.round_stats_list))
+                                   command=lambda: self.to_stats(self.round_stats_list, self.game_stats_list))
         self.stats_button.grid(row=1)
 
     def to_stats(self, game_history, game_stats):
@@ -182,6 +181,10 @@ class GameStats:
                                               anchor="w")
         self.games_played_value_label.grid(row=4, column=1, padx=0)
 
+    def close_stats(self, partner):
+        # put Help button back to normal...
+        partner.stats_button.config(state=NORMAL)
+        self.stats_box.destroy()
 
 # main routine
 if __name__ == "__main__":
