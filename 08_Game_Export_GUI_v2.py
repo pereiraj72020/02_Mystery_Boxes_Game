@@ -15,7 +15,7 @@ class Game:
         # Set starting balance to amount entered by user at start of game
         self.balance.set(starting_balance)
 
-        # Get value of stakes (use it as a multiplier when calculating winnnings
+        # Get value of stakes (use it as a multiplier when calculating winnings
         self.multiplier = IntVar()
         self.multiplier.set(stakes)
 
@@ -325,13 +325,13 @@ class Export:
         self.how_heading.grid(row=0)
 
         # Export Instructions (label, row 1)
-        self.export_text = Label(self.export_frame,
-                                         text="Enter a filename in the "
-                                              "box below and press the "
-                                              "Save button to save your "
-                                              "calculation history to "
-                                              "text file.",
+        self.export_text = Label(self.export_frame, text="Enter a filename in the "
+                                                         "box below and press the "
+                                                         "Save button to save your "
+                                                         "calculation history to "
+                                                         "text file.",
                                  justify=LEFT, width=40, wrap=250)
+
         self.export_text.grid(row=1)
 
         # Warning text (label, row 2)
@@ -365,7 +365,7 @@ class Export:
 
         self.cancel_button = Button(self.save_cancel_frame, text="Cancel",
                                     font="Arial 15 bold", bg="#660000", fg="white",
-                                    command=partial(self.close_export(partner)))
+                                    command=partial(self.close_export, partner))
         self.cancel_button.grid(row=0, column=1)
 
     def save_history(self, partner, game_history, game_stats):
@@ -374,7 +374,7 @@ class Export:
         valid_char = "[A-Za-z0-9_]"
         has_error = "no"
 
-        filename= self.filename_entry.get()
+        filename = self.filename_entry.get()
         print(filename)
 
         for letter in filename:
@@ -385,7 +385,7 @@ class Export:
                 problem = "(no spaces allowed)"
 
             else:
-                problem= ("(no {}'s allowed)".format(letter))
+                problem = ("(no {}'s allowed)".format(letter))
             has_error = "yes"
             break
 
@@ -397,11 +397,11 @@ class Export:
             # Display error message
             self.save_error_label.config(text="Invalid filename - {}".format(problem))
             # Change entry box background to pink
-            self.filename_entry.config(bg="ffafaf")
+            self.filename_entry.config(bg="#ffafaf")
             print()
 
         else:
-            # If there are no errors, generate text file and then close dialouge
+            # If there are no errors, generate text file and then close dialogue
             # add .txt suffix!
             filename = filename + ".txt"
 
@@ -411,6 +411,19 @@ class Export:
             # Heading for Stats
             f.write("Game Statistics\n\n")
 
+            # Game stats
+            for round in game_stats:
+                f.write(round + "\n")
+
+            # Heading for Rounds
+            f.write("\nRound Details\n\n")
+
+            # add new line at end of each item
+            for item in game_history:
+                f.write(item + "\n")
+
+            # close file
+            f.close()
 
     def close_export(self, partner):
         # put Help button back to normal...
