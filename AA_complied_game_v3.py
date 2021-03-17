@@ -237,7 +237,8 @@ class Game:
 
         self.stats_button = Button(self.help_export_frame, text="Game Stats...",
                                    font="Arial 15 bold",
-                                   bg="#003366", fg="white")
+                                   bg="#003366", fg="white",
+                                   command=lambda: self.to_stats(self.round_stats_list, self.game_stats_list))
         self.stats_button.grid(row=0, column=1, padx=2)
 
         # Quit Button
@@ -335,6 +336,10 @@ class Game:
 
     def to_help(self):
         get_help = Help(self)
+
+
+    def to_stats(self, game_history, game_stats):
+        GameStats(self, game_history, game_stats)
 
 class Help:
     def __init__(self, partner):
