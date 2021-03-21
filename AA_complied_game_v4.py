@@ -492,10 +492,23 @@ class GameStats:
                                               anchor="w")
         self.games_played_value_label.grid(row=4, column=1, padx=0)
 
+        # Export / Dismiss Buttons Frame (row 3)
+        self.export_dismiss_frame = Frame(self.history_frame)
+        self.export_dismiss_frame.grid(row=3, pady=10)
+
+        # Export Button
+        self.export_button = Button(self.export_dismiss_frame, text="Export",
+                                    font="Arial 12 bold",
+                                    command=lambda: self.export())
+
+
     def close_stats(self, partner):
         # put Help button back to normal...
         partner.stats_button.config(state=NORMAL)
         self.stats_box.destroy()
+
+    def export(self, game_history, all_game_stats):
+        Export(self, game_history, all_game_stats)
 
 
 class Export:
@@ -596,7 +609,7 @@ class Export:
             # Display error message
             self.save_error_label.config(text="Invalid filename - {}".format(problem))
             # Change entry box background to pink
-            self.filename_entry.config(bg="#ffafaf")
+            self.filename_entry.config(bg="#ffafa")
             print()
 
         else:
@@ -624,8 +637,11 @@ class Export:
             # close file
             f.close()
 
+            # close dialogue
+            self.close_export(partner)
+
     def close_export(self, partner):
-        # put Help button back to normal...
+        # Put export button back to normal
         partner.export_button.config(state=NORMAL)
         self.export_box.destroy()
 
