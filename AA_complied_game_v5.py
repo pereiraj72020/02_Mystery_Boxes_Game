@@ -388,7 +388,10 @@ class Help:
 
         # Dismiss button (row 2)
         self.dismiss_button = Button(self.help_frame, text="Dismiss",
-                                     width=10, bg="#660000", fg="white", font="arial 15 bold", )
+                                     width=10, bg="#660000", fg="white",
+                                     font="arial 15 bold",
+                                     command=partial(self.close_help, partner))
+        self.dismiss_button.grid(row=2, column=0)
 
     def close_help(self, partner):
         # put Help button back to normal...
