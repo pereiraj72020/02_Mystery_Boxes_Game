@@ -451,7 +451,7 @@ class GameStats:
                                                anchor="w")
         self.start_balance_value_label.grid(row=0, column=1, padx=0)
 
-        # Current Balance (row 2.2)
+        # Current Balance (row 2.1)
         self.current_balance_label = Label(self.details_frame,
                                            text="Current Balance:", font=heading,
                                            anchor="e")
@@ -471,7 +471,7 @@ class GameStats:
             amount = game_stats[0] - game_stats[1]
             win_loss_fg = "#660000"
 
-        # Amount won / lost (row 2.3)
+        # Amount won / lost (row 2.2)
         self.wind_loss_label = Label(self.details_frame,
                                      text=win_loss, font=heading,
                                      anchor="e")
@@ -481,7 +481,7 @@ class GameStats:
                                            fg=win_loss_fg, anchor="w")
         self.wind_loss_value_label.grid(row=2, column=1, padx=0)
 
-        # Rounds Played (row 2.4)
+        # Rounds Played (row 2.3)
         self.games_played_label = Label(self.details_frame,
                                         text="Rounds Played:", font=heading,
                                         anchor="e")
@@ -493,7 +493,7 @@ class GameStats:
         self.games_played_value_label.grid(row=4, column=1, padx=0)
 
         # Export / Dismiss Buttons Frame (row 3)
-        self.export_dismiss_frame = Frame(self.export_dismiss_frame)
+        self.export_dismiss_frame = Frame(self.stats_frame)
         self.export_dismiss_frame.grid(row=3, pady=10)
 
         # Export Button
@@ -504,7 +504,7 @@ class GameStats:
 
         # Dismiss button
         self.dismiss_button = Button(self.export_dismiss_frame, text="Dismiss",
-                                     font="arial 10 bold",
+                                     font="arial 12 bold",
                                      command=partial(self.close_stats, partner))
         self.dismiss_button.grid(row=0, column=1)
 
