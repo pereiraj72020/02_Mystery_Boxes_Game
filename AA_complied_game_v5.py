@@ -152,7 +152,7 @@ class Game:
         # Set starting balance to amount entered by user at start of game
         self.balance.set(starting_balance)
 
-        # Get value of stakes (use it as a multiplier when calculating winnnings
+        # Get value of stakes (use it as a multiplier when calculating winnings
         self.multiplier = IntVar()
         self.multiplier.set(stakes)
 
@@ -326,7 +326,7 @@ class Game:
             self.play_button.config(text="Game Over")
 
             balance_statement = "Current Balance: ${}\n" \
-                                "Your balance is too low. You can only quit" \
+                                "Your balance is too low. You can only quit\n" \
                                 "or view your stats. Sorry about that.".format(current_balance)
             self.balance_label.config(fg="#660000", font="Arial 10 bold",
                                       text=balance_statement)
