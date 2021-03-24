@@ -337,8 +337,8 @@ class Game:
     def to_help(self):
         get_help = Help(self)
 
-    def to_stats(self, game_history, game_stats):
-        GameStats(self, game_history, game_stats)
+    def to_stats(self, round_stats, game_stats):
+        GameStats(self, round_stats, game_stats)
 
 
 class Help:
@@ -400,9 +400,9 @@ class Help:
 
 
 class GameStats:
-    def __init__(self, partner, game_history, game_stats):
+    def __init__(self, partner, round_stats, game_stats):
 
-        print(game_history)
+        # print(game_history)
 
         # disable help button
         partner.stats_button.config(state=DISABLED)
@@ -491,7 +491,7 @@ class GameStats:
         self.games_played_label.grid(row=4, column=0, padx=0)
 
         self.games_played_value_label = Label(self.details_frame, font=content,
-                                              text=len(game_history),
+                                              text=len(game_stats),
                                               anchor="w")
         self.games_played_value_label.grid(row=4, column=1, padx=0)
 
@@ -502,7 +502,7 @@ class GameStats:
         # Export Button
         self.export_button = Button(self.export_dismiss_frame, text="Export",
                                     font="Arial 12 bold",
-                                    command=lambda: self.export(partner, game_history))
+                                    command=lambda: self.export(partner, game_stats, round_stats))
         self.export_button.grid(row=0, column=0)
 
         # Dismiss button
@@ -516,7 +516,7 @@ class GameStats:
         partner.stats_button.config(state=NORMAL)
         self.stats_box.destroy()
 
-    def export(self, game_history, all_game_stats):
+    def export(self, partner, game_history, all_game_stats):
         Export(self, game_history, all_game_stats)
 
 
@@ -638,6 +638,8 @@ class Export:
 
             # Heading for Rounds
             f.write("\nRound Details\n\n")
+
+            print("Game history", game_history)
 
             # add new line at end of each item
             for item in game_history:
