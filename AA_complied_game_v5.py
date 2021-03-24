@@ -402,6 +402,12 @@ class Help:
 class GameStats:
     def __init__(self, partner, round_stats, game_stats):
 
+        # GK Set up all game stats with starting and current balance
+        all_game_stats = [
+            "Starting Balance: ${}".format(game_stats[0]),
+            "Current Balance: ${}".format(game_stats[1])
+        ]
+
         # print(game_history)
 
         # disable help button
@@ -474,6 +480,10 @@ class GameStats:
             amount = game_stats[0] - game_stats[1]
             win_loss_fg = "#660000"
 
+        # Add amount won / lost to all_game_stats list for export
+        all_game_stats.append("{} {}".format(win_loss, amount))
+        all_game_stats.append("Rounds Played: {}".format(len(round_stats)))
+
         # Amount won / lost (row 2.2)
         self.wind_loss_label = Label(self.details_frame,
                                      text=win_loss, font=heading,
@@ -502,7 +512,7 @@ class GameStats:
         # Export Button
         self.export_button = Button(self.export_dismiss_frame, text="Export",
                                     font="Arial 12 bold",
-                                    command=lambda: self.export(partner, game_stats, round_stats))
+                                    command=lambda: self.export(partner, all_game_stats, round_stats))
         self.export_button.grid(row=0, column=0)
 
         # Dismiss button
